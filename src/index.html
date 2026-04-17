@@ -1,56 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../dist/home.css">
-    <title>Domain here</title>
+    <title>Golocaloop</title>
 </head>
+<body class="bg-white text-gray-800">
 
-<body>
-    <header class="p-2 flex gap-20 items-center">
-        <h1 class="text-3xl font-medium"><span class="text-blue-500 ">Go</span>localoop</h1>
-        <div class="relative max-w-md w-full">
+    <header class="p-3 sticky top-0 z-50 bg-white flex justify-between items-center border-b shadow-sm gap-4">
+        
+        <div class="flex items-center gap-3">
+            <button 
+                onclick="document.getElementById('sidebar').classList.toggle('-translate-x-full')" 
+                class="md:hidden p-2 text-gray-500 hover:bg-gray-100 rounded-lg transition-colors focus:outline-none">
+                <svg xmlns="http://w3.org" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+            <a href="#" class="text-2xl font-medium"><span class="text-blue-500">Go</span>localoop</a>
+        </div>
+
+        <div class="relative w-full max-w-md hidden sm:block">
             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://w3.org" fill="none"
-                    viewBox="0 0 20 20">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://w3.org" fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                 </svg>
             </div>
-            <input type="search"
-                class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                placeholder="Search..." required>
+            <input type="search" class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" placeholder="Search..." required>
         </div>
-        <div class="flex gap-2 ">
-            <button
-                class="relative p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors focus:outline-none">
 
-                <svg xmlns="http://w3.org" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <div class="flex gap-2 items-center">
+            <button class="relative p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors focus:outline-none">
+                <svg xmlns="http://w3.org" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                 </svg>
-
-
                 <span class="absolute top-1.5 right-1.5 flex h-2 w-2">
-                    <span
-                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
                 </span>
             </button>
 
             <button class="p-2 text-gray-500 border border-gray-300 hover:bg-gray-50 hover:border-gray-400 rounded-lg transition-all focus:outline-none">
-    <svg xmlns="http://w3.org" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-      <circle cx="12" cy="7" r="4"></circle>
-    </svg>
-  </button> 
-
-
+                <svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </button> 
         </div>
     </header>
-    <hr class="mt-3">
-</body>
+    <main class="grid grid-cols-1 md:grid-cols-[250px_1fr_300px] min-h-screen">
+        
+        <aside id="sidebar" class="fixed md:sticky md:top-[65px] left-0 z-40 w-64 md:w-full h-full md:h-[calc(100vh-65px)] bg-white border-r transition-transform duration-300 ease-in-out -translate-x-full md:translate-x-0 shadow-lg md:shadow-none">
+            <nav class="flex flex-col gap-2 p-4 pt-8 md:pt-4">
+                <a href="#" class="flex items-center gap-3 px-3 py-2 text-blue-600 bg-blue-50 rounded-lg transition-colors group font-medium">
+                    <svg xmlns="http://w3.org" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    <span class="text-sm">Home</span>
+                </a>
 
+                <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors group">
+                    <svg xmlns="http://w3.org" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <span class="text-sm font-medium">Freelancers</span>
+                </a>
+            </nav>
+        </aside>
+
+        <section class="p-6 bg-gray-50">
+            <div class="border-2 border-dashed border-gray-300 rounded-lg h-96 flex items-center justify-center text-gray-500">
+                Main Feed 
+            </div>
+        </section>
+
+        <aside class="hidden md:block border-l bg-white p-4 sticky top-[65px] h-[calc(100vh-65px)] overflow-y-auto">
+            <h3 class="font-semibold text-gray-700 mb-4">Suggested</h3>
+            <div class="border-2 border-dashed border-gray-200 rounded-lg h-48 flex items-center justify-center text-gray-400 text-sm">
+                test
+            </div>
+        </aside>
+
+    </main>
+
+</body>
 </html>
