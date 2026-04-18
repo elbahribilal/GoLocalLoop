@@ -230,30 +230,9 @@
             transition: background-color 0.3s ease;
         }
 
-        .submit-btn:hover:not(:disabled) {
-            background-color: var(--brand-indigo);
-        }
+        
 
-        .submit-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .terms-text {
-            text-align: center;
-            font-size: 0.875rem;
-            color: var(--neutral-600);
-        }
-
-        .terms-text a {
-            color: var(--brand-blue);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .terms-text a:hover {
-            color: var(--brand-indigo);
-        }
+        
 
         @media (max-width: 640px) {
             .container {

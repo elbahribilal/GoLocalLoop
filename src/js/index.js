@@ -2,75 +2,96 @@
 const feed = document.getElementById('feed');
 const loader = document.getElementById('loader');
 
+const times = ['hours', 'menutes', 'days', 'months']
 
 
-function toggleMenu(){
+function fillLikeIcon(e) {
+    const svg = e.currentTarget.children[0]
+    if (svg.style.fill === 'none') {
+        svg.style.fill = 'red'
+        e.currentTarget.classList.add('text-red-500')
+        e.currentTarget.classList.remove('text-gray-500')
+    } else {
+        svg.style.fill = 'none'
+        e.currentTarget.classList.add('text-gray-500')
+        e.currentTarget.classList.remove('text-red-500')
+    }
+}
+
+function fillSaveIcon(e) {
+    const svg = e.currentTarget.children[0]
+    if (svg.style.fill === 'none') {
+        svg.style.fill = 'gray'
+        e.currentTarget.classList.add('text-gray-600')
+        e.currentTarget.classList.remove('text-gray-500')
+    } else {
+        svg.style.fill = 'none'
+        e.currentTarget.classList.add('text-gray-500')
+        e.currentTarget.classList.remove('text-gray-600')
+    }
+}
+
+function toggleMenu() {
     document.getElementById('sidebar').classList.toggle('-translate-x-full');
 }
 // show red dot if new messages
 redDot = document.getElementById('message_red_dot');
 newMessage = true
-if (newMessage){
+if (newMessage) {
     redDot.classList.add("flex")
     redDot.classList.remove("hidden")
 
 }
 
-function loadRandomPost(){
+function loadRandomPost() {
     posts = [
         {
-        profile:`https://i.pravatar.cc/3${Math.floor(Math.random() * 99) + 1}`,
-        username:"Abderrahim EL Yaagoubi",
-        timeAgo:`${Math.floor(Math.random() * 9) + 2} Hours ago`,
-        postText:"Need help with a React project, budget is negotiable!",
-        images:[`https://picsum.photos/3${Math.floor(Math.random() * 99) + 1}`,`https://picsum.photos/3${Math.floor(Math.random() * 99) + 1}`]
-    },
-    {
-        profile:`https://i.pravatar.cc/3${Math.floor(Math.random() * 99) + 1}`,
-        username:"Bilal Bahri",
-        timeAgo:`${Math.floor(Math.random() * 9) + 2} Hours ago`,
-        postText:"NEED HELP: Looking for a Graphic Design expert for a logo refresh. Budget: $500.",
-        images:[`https://picsum.photos/3${Math.floor(Math.random() * 99) + 1}`,`https://picsum.photos/3${Math.floor(Math.random() * 99) + 1}`]
-    },
-    {
-        profile:`https://i.pravatar.cc/3${Math.floor(Math.random() * 99) + 1}`,
-        username:"Yassine",
-        timeAgo:`${Math.floor(Math.random() * 9) + 2} Hours ago`,
-        postText:"HIRING: Looking for a freelance SEO for long-term collaboration. DM me!",
-        images:[`https://picsum.photos/3${Math.floor(Math.random() * 99) + 1}`,`https://picsum.photos/3${Math.floor(Math.random() * 99) + 1}`]
-    },
-    {
-        profile:`https://i.pravatar.cc/3${Math.floor(Math.random() * 99) + 1}`,
-        username:"Marwa",
-        timeAgo:`${Math.floor(Math.random() * 9) + 2} Hours ago`,
-        postText:"FREELANCER: React Developer available for new projects. Check my portfolio!",
-        images:[`https://picsum.photos/3${Math.floor(Math.random() * 99) + 1}`,`https://picsum.photos/3${Math.floor(Math.random() * 99) + 1}`]
-    },
-    {
-        profile:`https://i.pravatar.cc/3${Math.floor(Math.random() * 99) + 1}`,
-        username:"Anas",
-        timeAgo:`${Math.floor(Math.random() * 9) + 2} Hours ago`,
-        postText:"SELLING: Professional Mechanical Keyboard. Perfect for devs. PM for details.",
-        images:[`https://picsum.photos/3${Math.floor(Math.random() * 99) + 1}`,`https://picsum.photos/3${Math.floor(Math.random() * 99) + 1}`]
-    },
-    {
-        profile:`https://i.pravatar.cc/3${Math.floor(Math.random() * 99) + 1}`,
-        username:"Abdelbasset",
-        timeAgo:`${Math.floor(Math.random() * 9) + 2} Hours ago`,
-        postText:"FOR SALE: Selling my MacBook Pro 2021. Great condition! Asking $1200.",
-        images:[`https://picsum.photos/3${Math.floor(Math.random() * 99) + 1}`,`https://picsum.photos/3${Math.floor(Math.random() * 99) + 1}`]
-    },
-]
+            profile: `https://i.pravatar.cc/3${Math.floor(Math.random() * 99) + 1}`,
+            username: "Abderrahim EL Yaagoubi",
+            postText: "Need help with a React project, budget is negotiable!",
+            images: [`https://picsum.photos/3${Math.floor(Math.random() * 99) + 1}`, `https://picsum.photos/3${Math.floor(Math.random() * 99) + 1}`]
+        },
+        {
+            profile: `https://i.pravatar.cc/3${Math.floor(Math.random() * 99) + 1}`,
+            username: "Bilal Bahri",
+            postText: "NEED HELP: Looking for a Graphic Design expert for a logo refresh. Budget: $500.",
+            images: [`https://picsum.photos/3${Math.floor(Math.random() * 99) + 1}`, `https://picsum.photos/3${Math.floor(Math.random() * 99) + 1}`]
+        },
+        {
+            profile: `https://i.pravatar.cc/3${Math.floor(Math.random() * 99) + 1}`,
+            username: "Yassine",
+            postText: "HIRING: Looking for a freelance SEO for long-term collaboration. DM me!",
+            images: [`https://picsum.photos/3${Math.floor(Math.random() * 99) + 1}`, `https://picsum.photos/3${Math.floor(Math.random() * 99) + 1}`]
+        },
+        {
+            profile: `https://i.pravatar.cc/3${Math.floor(Math.random() * 99) + 1}`,
+            username: "Marwa",
+            postText: "FREELANCER: React Developer available for new projects. Check my portfolio!",
+            images: [`https://picsum.photos/3${Math.floor(Math.random() * 99) + 1}`, `https://picsum.photos/3${Math.floor(Math.random() * 99) + 1}`]
+        },
+        {
+            profile: `https://i.pravatar.cc/3${Math.floor(Math.random() * 99) + 1}`,
+            username: "Anas",
+            postText: "SELLING: Professional Mechanical Keyboard. Perfect for devs. PM for details.",
+            images: [`https://picsum.photos/3${Math.floor(Math.random() * 99) + 1}`, `https://picsum.photos/3${Math.floor(Math.random() * 99) + 1}`]
+        },
+        {
+            profile: `https://i.pravatar.cc/3${Math.floor(Math.random() * 99) + 1}`,
+            username: "Abdelbasset",
+            postText: "FOR SALE: Selling my MacBook Pro 2021. Great condition! Asking $1200.",
+            images: [`https://picsum.photos/3${Math.floor(Math.random() * 99) + 1}`, `https://picsum.photos/3${Math.floor(Math.random() * 99) + 1}`]
+        },
+    ]
     return posts
-    
-    
-}
-function getPost(){
 
-    post = loadRandomPost()[Math.floor(Math.random() * 6) ]
+
+}
+function getPost() {
+
+    post = loadRandomPost()[Math.floor(Math.random() * 6)]
     console.log(post)
     const newPost = `
-        <div class="max-w-md mx-auto bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+        <div class=" max-w-2xl  w-[90%] mx-auto bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
                     <!-- Post Header -->
                     <div class="flex items-center gap-3 p-4">
                         <div class="h-10 w-10 rounded-full bg-gray-200 border border-gray-300 overflow-hidden">
@@ -79,14 +100,16 @@ function getPost(){
                         </div>
                         <div>
                             <h3 class="text-sm font-semibold text-gray-900">${post.username}</h3>
-                            <p class="text-xs text-gray-500">${post.timeAgo}</p>
+                            <p class="text-xs text-gray-500">
+                            ${(Math.floor(Math.random() * 9) + 2) + ' ' + times[Math.floor(Math.random() * times.length)]} ago
+                            </p>
                         </div>
                     </div>
 
                     <!-- Post Text -->
                     <div class="px-4 pb-3">
                         <p class="text-sm text-gray-700 leading-relaxed">
-                            ${post.postText  }
+                            ${post.postText}
                         </p>
                     </div>
 
@@ -101,7 +124,7 @@ function getPost(){
                     <div class="flex items-center justify-between p-3">
                         <div class="flex items-center gap-1">
                             <!-- Like -->
-                            <button
+                            <button onclick="fillLikeIcon(event)"
                                 class="p-2 text-gray-500 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors">
                                 <svg xmlns="http://w3.org" width="20" height="20" viewBox="0 0 24 24" fill="none"
                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -121,17 +144,7 @@ function getPost(){
                                 </svg>
                             </button>
                             <!-- Ask Icon Button -->
-                            <button
-                                class="p-2 text-gray-500 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-all focus:outline-none"
-                                title="Ask for details">
-                                <svg xmlns="http://w3.org" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                                </svg>
-                            </button>
+                            
                             <button
                                 class="w-full py-1 px-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition-all duration-200 transform active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-blue-500 ">
                                 Ask for it
@@ -139,7 +152,7 @@ function getPost(){
                         </div>
 
                         <!-- Save -->
-                        <button
+                        <button onclick="fillSaveIcon(event)"
                             class="p-2 text-gray-500  hover:bg-yellow-50 hover:text-gray-600 rounded-lg transition-colors">
                             <svg xmlns="http://w3.org" width="20" height="20" viewBox="0 0 24 24" fill="none"
                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -152,14 +165,14 @@ function getPost(){
     `
     feed.insertAdjacentHTML('beforeend', newPost);
 }
- 
+
 const observer = new IntersectionObserver((entries) => {
-  if (entries[0].isIntersecting) {
-    // load 3 new posts
-    getPost()
-    getPost()
-    getPost()
-  }
+    if (entries[0].isIntersecting) {
+        // load 3 new posts
+        getPost()
+        getPost()
+        getPost()
+    }
 }, { threshold: 1.0 });
 
 observer.observe(loader);
