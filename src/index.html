@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../dist/home.css">
     <title>Golocaloop</title>
 </head>
+
 <body class="bg-white text-gray-800">
 
     <header class="p-3 sticky top-0 z-50 bg-white flex justify-between items-center border-b shadow-sm gap-4">
-        
+
         <div class="flex items-center gap-3">
-            <button 
-                onclick="document.getElementById('sidebar').classList.toggle('-translate-x-full')" 
+            <button onclick="toggleMenu()"
                 class="md:hidden p-2 text-gray-500 hover:bg-gray-100 rounded-lg transition-colors focus:outline-none">
-                <svg xmlns="http://w3.org" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <svg xmlns="http://w3.org" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>
@@ -23,46 +25,61 @@
 
         <div class="relative w-full max-w-md hidden sm:block">
             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://w3.org" fill="none" viewBox="0 0 20 20">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://w3.org" fill="none"
+                    viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                 </svg>
             </div>
-            <input type="search" class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" placeholder="Search..." required>
+            <input type="search"
+                class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                placeholder="Search..." required>
         </div>
 
         <div class="flex gap-2 items-center">
-            <button class="relative p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors focus:outline-none">
-                <svg xmlns="http://w3.org" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <button
+                class="relative p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors focus:outline-none">
+                <svg xmlns="http://w3.org" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                 </svg>
-                <span class="absolute top-1.5 right-1.5 flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span class="absolute top-1.5 right-1.5 hidden h-2 w-2" id="message_red_dot">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
                 </span>
             </button>
 
-            <button class="p-2 text-gray-500 border border-gray-300 hover:bg-gray-50 hover:border-gray-400 rounded-lg transition-all focus:outline-none">
-                <svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <button
+                class="p-2 text-gray-500 border border-gray-300 hover:bg-gray-50 hover:border-gray-400 rounded-lg transition-all focus:outline-none">
+                <svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
                 </svg>
-            </button> 
+            </button>
         </div>
     </header>
-    <main class="grid grid-cols-1 md:grid-cols-[minmax(0,300px)_2fr_minmax(0,300px)] min-h-screen">
-        
-        <aside id="sidebar" class="fixed md:sticky md:top-[65px] left-0 z-40 w-64   h-full md:h-[calc(100vh-65px)] bg-white border-r transition-transform duration-300 ease-in-out -translate-x-full md:translate-x-0 shadow-lg md:shadow-none">
+    <main
+        class="grid grid-cols-1  md:grid-cols-[minmax(0,300px)_2fr] lg:grid-cols-[minmax(0,300px)_2fr_minmax(0,300px)] min-h-screen">
+
+        <aside id="sidebar"
+            class="fixed md:sticky md:top-[65px] left-0 z-40 w-64   h-full md:h-[calc(100vh-65px)] bg-white border-r transition-transform duration-300 ease-in-out -translate-x-full md:translate-x-0 shadow-lg md:shadow-none">
             <nav class="flex flex-col gap-2 p-4 pt-8 md:pt-4">
-                <a href="#" class="flex items-center gap-3 px-3 py-2 text-blue-600 bg-blue-50 rounded-lg transition-colors group font-medium">
-                    <svg xmlns="http://w3.org" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <a href="#"
+                    class="flex items-center gap-3 px-3 py-2 text-blue-600 bg-blue-50 rounded-lg transition-colors group font-medium">
+                    <svg xmlns="http://w3.org" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                         <polyline points="9 22 9 12 15 12 15 22"></polyline>
                     </svg>
                     <span class="text-sm">Home</span>
                 </a>
 
-                <a href="#" class="flex items-center gap-3 px-3 py-2 text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors group">
-                    <svg xmlns="http://w3.org" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <a href="#"
+                    class="flex items-center gap-3 px-3 py-2 text-gray-600 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-colors group">
+                    <svg xmlns="http://w3.org" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
                         <circle cx="9" cy="7" r="4"></circle>
                         <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
@@ -70,23 +87,205 @@
                     </svg>
                     <span class="text-sm font-medium">Freelancers</span>
                 </a>
+                <!-- Marketplace Link -->
+                <a href="#"
+                    class="flex items-center gap-3 px-3 py-2 text-gray-600 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors group">
+                    <svg xmlns="http://w3.org" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z"></path>
+                        <path d="m3 9 2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.8 1.1L21 9"></path>
+                        <path d="M12 3v6"></path>
+                    </svg>
+                    <span class="text-sm font-medium">Marketplace</span>
+                </a>
+
             </nav>
         </aside>
 
-        <section class="p-6  bg-gray-50">
-            <div class="border-2 border-dashed border-gray-300 rounded-lg h-96 flex items-center justify-center text-gray-500">
-                Main Feed 
+        <section class="p-6 w-full  h-full feed flex flex-col items-center gap-3  bg-gray-100">
+            <div  class="w-full  h-full  flex flex-col items-center gap-3">
+                <div id="feed" class="max-w-md mx-auto bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                    <!-- Post Header -->
+                    <div class="flex items-center gap-3 p-4">
+                        <div class="h-10 w-10 rounded-full bg-gray-200 border border-gray-300 overflow-hidden">
+                            <!-- Profile Image -->
+                            <img src="https://i.pravatar.cc/370" alt="avatar">
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-900">Malak</h3>
+                            <p class="text-xs text-gray-500">2 hours ago</p>
+                        </div>
+                    </div>
+
+                    <!-- Post Text -->
+                    <div class="px-4 pb-3">
+                        <p class="text-sm text-gray-700 leading-relaxed">
+                            Check out this amazing project I just finished! 🚀 #Freelance #Design
+                        </p>
+                    </div>
+
+                    <!-- Post Images  -->
+
+                    <div class="grid grid-cols-2 gap-0.5 bg-gray-100 border-y border-gray-100">
+                        <img src="https://picsum.photos/270" alt="post" class="w-full h-64 object-cover">
+                        <img src="https://picsum.photos/370" alt="post" class="w-full h-64 object-cover">
+                    </div>
+
+                    <!-- Interaction Bar -->
+                    <div class="flex items-center justify-between p-3">
+                        <div class="flex items-center gap-1">
+                            <!-- Like -->
+                            <button
+                                class="p-2 text-gray-500 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors">
+                                <svg xmlns="http://w3.org" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                                </svg>
+                            </button>
+
+                            <!-- Contact/Message -->
+                            <button
+                                class="p-2 text-gray-500 hover:text-blue-500 hover:bg-blue-50 rounded-lg transition-colors">
+                                <svg xmlns="http://w3.org" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                            </button>
+                            <!-- Ask Icon Button -->
+                            <button
+                                class="p-2 text-gray-500 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-all focus:outline-none"
+                                title="Ask for details">
+                                <svg xmlns="http://w3.org" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                </svg>
+                            </button>
+                            <button
+                                class="w-full py-1 px-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition-all duration-200 transform active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-blue-500 ">
+                                Ask for it
+                            </button>
+                        </div>
+
+                        <!-- Save -->
+                        <button
+                            class="p-2 text-gray-500  hover:bg-yellow-50 hover:text-gray-600 rounded-lg transition-colors">
+                            <svg xmlns="http://w3.org" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                
+
+                <div id="loader" style="height: 100px; text-align: center;">Loading more posts...</div>
+
             </div>
+
+
+
+
         </section>
 
-        <aside class="hidden md:block border-l bg-white p-4 sticky top-[65px] h-[calc(100vh-65px)] overflow-y-auto">
-            <h3 class="font-semibold text-gray-700 mb-4">Suggested</h3>
-            <div class="border-2 border-dashed border-gray-200 rounded-lg h-48 flex items-center justify-center text-gray-400 text-sm">
-                test
+        <aside class="hidden lg:block border-l bg-white p-4 sticky top-[65px] h-[calc(100vh-65px)] overflow-y-auto">
+            <h3 class="font-semibold text-gray-700 mb-4 ">Suggested</h3>
+
+
+
+            <div
+                class="max-w-md  bg-white  border mt-2 flex items-center justify-between border-gray-200 rounded-xl overflow-hidden shadow-sm">
+
+                <div class="flex items-center gap-3 p-4">
+                    <div class="h-10 w-10 rounded-full bg-gray-200 border border-gray-300 overflow-hidden">
+                        <!-- Profile Image -->
+                        <img src="https://i.pravatar.cc/309" alt="avatar">
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-900">Moad</h3>
+                        <p class="text-xs text-gray-500"> Web Developer</p>
+                    </div>
+
+
+                </div>
+
+                <button
+                    class="gap-2 px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white  rounded-full transition-all duration-200 shadow-md">
+                    <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                        class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+                    </svg>
+
+                </button>
+
+            </div>
+            <div
+                class="max-w-md  bg-white  border mt-2 flex items-center justify-between border-gray-200 rounded-xl overflow-hidden shadow-sm">
+
+                <div class="flex items-center gap-3 p-4">
+                    <div class="h-10 w-10 rounded-full bg-gray-200 border border-gray-300 overflow-hidden">
+                        <!-- Profile Image -->
+                        <img src="https://i.pravatar.cc/318" alt="avatar">
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-900">Fatima</h3>
+                        <p class="text-xs text-gray-500"> Electrician</p>
+                    </div>
+
+
+                </div>
+
+                <button
+                    class="gap-2 px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white  rounded-full transition-all duration-200 shadow-md">
+                    <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                        class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+                    </svg>
+
+                </button>
+
+            </div>
+            <div
+                class="max-w-md  bg-white  border mt-2 flex items-center justify-between border-gray-200 rounded-xl overflow-hidden shadow-sm">
+
+                <div class="flex items-center gap-3 p-4">
+                    <div class="h-10 w-10 rounded-full bg-gray-200 border border-gray-300 overflow-hidden">
+                        <!-- Profile Image -->
+                        <img src="https://i.pravatar.cc/319" alt="avatar">
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-medium text-gray-900">Sara</h3>
+                        <p class="text-xs text-gray-500"> ML Engineer</p>
+                    </div>
+
+
+                </div>
+
+                <button
+                    class="gap-2 px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white  rounded-full transition-all duration-200 shadow-md">
+                    <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                        class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+                    </svg>
+
+                </button>
+
             </div>
         </aside>
 
     </main>
 
+
+    <script src="js/index.js"></script>
 </body>
+
 </html>
