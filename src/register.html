@@ -133,6 +133,7 @@
             if (form.checkValidity()) {
                 const newUser = {
                     id: Date.now(),
+                    profile:"https://i.pravatar.cc/100?img="+Date.now().toString().substring(0,4),
                     username: formData.userName,
                     email: formData.email,
                     password: await hashString(formData.password),

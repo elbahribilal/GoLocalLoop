@@ -1,18 +1,22 @@
 
 const feed = document.getElementById('feed');
 const loader = document.getElementById('loader');
-
+const realUser = document.getElementById('realUser')
+const realUserImg = document.getElementById('realUserImg')
 const times = ['hours', 'menutes', 'days', 'months']
 let isLogedIn = false
 const currentUser = JSON.parse(localStorage.getItem('currentUser'))
+
 if (currentUser){
     isLogedIn = true
 }
 if (isLogedIn){
     document.getElementById('anonymousUser').classList.add("hidden")
-    document.getElementById('realUser').classList.remove("hidden")
+    realUser.classList.remove("hidden")
+    realUserImg.src = currentUser.profile
 }
 function fillLikeIcon(e) {
+    if (isLogedIn){
     const svg = e.currentTarget.children[0]
     if (svg.style.fill === 'none') {
         svg.style.fill = 'red'
@@ -23,9 +27,13 @@ function fillLikeIcon(e) {
         e.currentTarget.classList.add('text-gray-500')
         e.currentTarget.classList.remove('text-red-500')
     }
+    }else{
+        window.location.replace("login.html")
+    }
 }
 
 function fillSaveIcon(e) {
+    if (isLogedIn){
     const svg = e.currentTarget.children[0]
     if (svg.style.fill === 'none') {
         svg.style.fill = 'gray'
@@ -36,6 +44,10 @@ function fillSaveIcon(e) {
         e.currentTarget.classList.add('text-gray-500')
         e.currentTarget.classList.remove('text-gray-600')
     }
+    }else{
+        window.location.replace("login.html")
+    }
+
 }
 
 function toggleMenu() {
@@ -48,6 +60,13 @@ if (newMessage) {
     redDot.classList.add("flex")
     redDot.classList.remove("hidden")
 
+}
+function chatOpen(){
+    if (isLogedIn){
+        window.location.replace("chat.html")
+}else{
+        window.location.replace("login.html")
+    }
 }
 
 function loadRandomPost() {
@@ -96,7 +115,6 @@ function loadRandomPost() {
 function getPost() {
 
     post = loadRandomPost()[Math.floor(Math.random() * 6)]
-    console.log(post)
     const newPost = `
         <div class=" max-w-2xl  w-[90%] mx-auto bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
                     <!-- Post Header -->
@@ -152,7 +170,7 @@ function getPost() {
                             </button>
                             <!-- Ask Icon Button -->
                             
-                            <button
+                            <button onclick="chatOpen()"
                                 class="w-full py-1 px-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition-all duration-200 transform active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-blue-500 ">
                                 Ask for it
                             </button>

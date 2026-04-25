@@ -38,7 +38,7 @@
         </div>
 
         <div class="flex gap-2 items-center">
-            <a href="#"
+            <button onclick="chatOpen()"
                 class="relative p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors focus:outline-none">
                 <svg xmlns="http://w3.org" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -49,15 +49,22 @@
                         class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
                 </span>
-            </a>
+            </button>
 
-            <a href="login.html"
+            <a id="anonymousUser" href="login.html"
                 class="p-2 text-gray-500 border border-gray-300 hover:bg-gray-50 hover:border-gray-400 rounded-lg transition-all focus:outline-none">
                 <svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
                 </svg>
+            </a>
+            <a id="realUser" href="#"
+                class="hidden p-2  hover:bg-gray-50 hover:border-gray-400 rounded-lg transition-all focus:outline-none">
+                <div class="h-10 w-10 rounded-full bg-gray-200 border border-gray-300 overflow-hidden">
+
+                    <img id="realUserImg" src="" alt="avatar">
+                </div>
             </a>
         </div>
     </header>
@@ -135,7 +142,7 @@
                         </div>
                         <div class="px-4 flex justify-end  pb-3">
                             <!-- make offer Icon Button -->
-                            <a href="#"
+                            <button onclick="chatOpen()"
                                 class="p-2  flex items-center gap-1  text-gray-500 text-sm  rounded-lg transition-all border border-blue-500 hover:bg-blue-500 hover:text-white  focus:outline-none "
                                 title="Ask for details">
                                 <span>Make offer</span>
@@ -146,7 +153,7 @@
                                     <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
                                     <line x1="12" y1="17" x2="12.01" y2="17"></line>
                                 </svg>
-                            </a>
+                            </button>
                         </div>
 
                     </div>
@@ -168,14 +175,35 @@
 
     </main>
     <script>
+        const realUser = document.getElementById('realUser')
+        const realUserImg = document.getElementById('realUserImg')
+        let isLogedIn = false
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'))
+
+        if (currentUser) {
+            isLogedIn = true
+        }
+        if (isLogedIn) {
+            document.getElementById('anonymousUser').classList.add("hidden")
+            realUser.classList.remove("hidden")
+            realUserImg.src = currentUser.profile
+        }
+
+        function chatOpen() {
+            if (isLogedIn) {
+                window.location.replace("chat.html")
+            } else {
+                window.location.replace("login.html")
+            }
+        }
         function toggleMenu() {
             document.getElementById('sidebar').classList.toggle('-translate-x-full');
         }
 
-        const times = ['hours','menutes','days','months']
-        // here i used some js to make infinit scroll 
+        const times = ['hours', 'menutes', 'days', 'months']
+        // here we used some js to make infinit scroll 
         function loadRandomPost() {
-            
+
             posts = [
                 {
                     profile: `https://i.pravatar.cc/3${Math.floor(Math.random() * 99) + 1}`,
@@ -221,7 +249,7 @@
         function getPost() {
 
             post = loadRandomPost()[Math.floor(Math.random() * 6)]
-            
+
             const newPost = `
         <div
                         class="w-[95%]   mx-auto  bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
@@ -257,7 +285,7 @@
                         </div>
                         <div class="px-4 flex justify-end  pb-3">
                             <!-- make offer Icon Button -->
-                            <a href="#"
+                            <button onclick="chatOpen()"
                                 class="p-2  flex items-center gap-1  text-gray-500 text-sm  rounded-lg transition-all border border-blue-500 hover:bg-blue-500 hover:text-white  focus:outline-none "
                                 title="Ask for details">
                                 <span>Make offer</span>
@@ -268,7 +296,7 @@
                                     <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
                                     <line x1="12" y1="17" x2="12.01" y2="17"></line>
                                 </svg>
-                            </a>
+                            </button>
                         </div>
 
                     </div>
@@ -288,7 +316,7 @@
         observer.observe(loader);
 
 
-        
+
     </script>
 </body>
 
