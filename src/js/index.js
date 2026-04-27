@@ -121,7 +121,7 @@ function getPost() {
                     <div class="flex items-center gap-3 p-4">
                         <div class="h-10 w-10 rounded-full bg-gray-200 border border-gray-300 overflow-hidden">
                             <!-- Profile Image -->
-                            <img src="${post.profile}" alt="avatar">
+                            <img loading="lazy" loading="lazy" loading="lazy" src="${post.profile}" alt="avatar">
                         </div>
                         <div>
                             <h3 class="text-sm font-semibold text-gray-900">${post.username}</h3>
@@ -141,8 +141,8 @@ function getPost() {
                     <!-- Post Images  -->
 
                     <div class="grid grid-cols-2 gap-0.5 bg-gray-100 border-y border-gray-100">
-                        <img src="${post.images[0]}" alt="post" class="w-full h-64 object-cover">
-                        <img src="${post.images[1]}" alt="post" class="w-full h-64 object-cover">
+                        <img loading="lazy" loading="lazy" loading="lazy" src="${post.images[0]}" alt="post" class="w-full h-64 object-cover">
+                        <img loading="lazy" loading="lazy" loading="lazy" src="${post.images[1]}" alt="post" class="w-full h-64 object-cover">
                     </div>
 
                     <!-- Interaction Bar -->
