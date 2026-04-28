@@ -105,7 +105,16 @@
                     </svg>
                     <span class="text-sm font-medium">Marketplace</span>
                 </a>
-
+                <button onclick="localStorage.removeItem('currentUser'); location.reload();"
+                    class="flex items-center gap-3 px-3 py-2 text-gray-600 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors group mb-4">
+                    <svg xmlns="http://w3.org" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    <span class="text-sm font-medium">Logout</span>
+                </button>
             </nav>
         </aside>
 
@@ -130,8 +139,10 @@
                         </div>
 
                         <div class="grid grid-cols-2 gap-0.5 bg-gray-100 border-y border-gray-100">
-                            <img loading="lazy" loading="lazy" src="https://picsum.photos/270" alt="post" class="w-full h-64 object-cover">
-                            <img loading="lazy" loading="lazy" src="https://picsum.photos/370" alt="post" class="w-full h-64 object-cover">
+                            <img loading="lazy" loading="lazy" src="https://picsum.photos/270" alt="post"
+                                class="w-full h-64 object-cover">
+                            <img loading="lazy" loading="lazy" src="https://picsum.photos/370" alt="post"
+                                class="w-full h-64 object-cover">
                         </div>
 
                         <div class="px-4  pb-3">
