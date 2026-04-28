@@ -7,44 +7,45 @@ const times = ['hours', 'menutes', 'days', 'months']
 let isLogedIn = false
 const currentUser = JSON.parse(localStorage.getItem('currentUser'))
 
-if (currentUser){
+if (currentUser) {
     isLogedIn = true
 }
-if (isLogedIn){
+if (!isLogedIn) { document.getElementById('logout').classList.add("hidden") }
+if (isLogedIn) {
     document.getElementById('anonymousUser').classList.add("hidden")
     realUser.classList.remove("hidden")
     realUserImg.src = currentUser.profile
 }
 function fillLikeIcon(e) {
-    if (isLogedIn){
-    const svg = e.currentTarget.children[0]
-    if (svg.style.fill === 'none') {
-        svg.style.fill = 'red'
-        e.currentTarget.classList.add('text-red-500')
-        e.currentTarget.classList.remove('text-gray-500')
+    if (isLogedIn) {
+        const svg = e.currentTarget.children[0]
+        if (svg.style.fill === 'none') {
+            svg.style.fill = 'red'
+            e.currentTarget.classList.add('text-red-500')
+            e.currentTarget.classList.remove('text-gray-500')
+        } else {
+            svg.style.fill = 'none'
+            e.currentTarget.classList.add('text-gray-500')
+            e.currentTarget.classList.remove('text-red-500')
+        }
     } else {
-        svg.style.fill = 'none'
-        e.currentTarget.classList.add('text-gray-500')
-        e.currentTarget.classList.remove('text-red-500')
-    }
-    }else{
         window.location.replace("login.html")
     }
 }
 
 function fillSaveIcon(e) {
-    if (isLogedIn){
-    const svg = e.currentTarget.children[0]
-    if (svg.style.fill === 'none') {
-        svg.style.fill = 'gray'
-        e.currentTarget.classList.add('text-gray-600')
-        e.currentTarget.classList.remove('text-gray-500')
+    if (isLogedIn) {
+        const svg = e.currentTarget.children[0]
+        if (svg.style.fill === 'none') {
+            svg.style.fill = 'gray'
+            e.currentTarget.classList.add('text-gray-600')
+            e.currentTarget.classList.remove('text-gray-500')
+        } else {
+            svg.style.fill = 'none'
+            e.currentTarget.classList.add('text-gray-500')
+            e.currentTarget.classList.remove('text-gray-600')
+        }
     } else {
-        svg.style.fill = 'none'
-        e.currentTarget.classList.add('text-gray-500')
-        e.currentTarget.classList.remove('text-gray-600')
-    }
-    }else{
         window.location.replace("login.html")
     }
 
@@ -61,10 +62,10 @@ if (newMessage) {
     redDot.classList.remove("hidden")
 
 }
-function chatOpen(){
-    if (isLogedIn){
+function chatOpen() {
+    if (isLogedIn) {
         window.location.replace("chat.html")
-}else{
+    } else {
         window.location.replace("login.html")
     }
 }
