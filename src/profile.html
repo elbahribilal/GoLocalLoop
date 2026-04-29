@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* 🎨 المتغيرات اللونية (سيتم تغييرها ديناميكياً عبر الجافاسكريبت) */
+
 :root {
   --primary: #0F3D3E;
   --secondary: #E2B007;
@@ -38,7 +38,7 @@ body {
   transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-/* 🔵 HEADER */
+/* HEADER */
 header {
   position: sticky;
   top: 0;
@@ -76,13 +76,13 @@ header {
   transform: scale(1.2);
 }
 
-/* 🖼️ COVER (مع تأثير الحركة والطبقات) */
+/*  COVER  */
 .cover-container {
   height: 260px;
   width: 100%;
   overflow: hidden;
   position: relative;
-  z-index: 1; /* الغلاف في الخلف تماماً */
+  z-index: 1; 
   background-color: var(--primary);
 }
 
@@ -94,25 +94,24 @@ header {
   opacity: 0.85;
 }
 
-/* تأثير التكبير والتحريك المستمر للغلاف */
+
 @keyframes zoomPan {
   0% { transform: scale(1) translate(0, 0); }
   100% { transform: scale(1.15) translate(-2%, 2%); }
 }
 
-/* 📦 CARD */
+/* CARD */
 .card-wrapper {
   padding: 0 var(--spacing);
   max-width: 650px;
   margin: auto;
   position: relative;
-  z-index: 10; /* تغليف البطاقة بالكامل ليكون فوق الغلاف */
+  z-index: 10; 
 }
 
 .card {
   position: relative;
   background: var(--card);
-  /* سحب البطاقة للأعلى لتغطي جزء من الغلاف */
   margin-top: -70px; 
   padding: 70px var(--spacing) var(--spacing);
   border-radius: var(--radius);
@@ -120,7 +119,7 @@ header {
   transition: background-color 0.5s ease;
 }
 
-/* 👤 PROFILE IMAGE (تبرز للخارج) */
+/* PROFILE IMAGE  */
 .profile-img {
   width: 130px;
   height: 130px;
@@ -135,7 +134,7 @@ header {
   transition: border-color 0.5s ease;
 }
 
-/* 📝 INFO */
+/*  INFO */
 .name {
   font-size: 26px;
   font-weight: 800;
@@ -183,7 +182,7 @@ header {
   font-size: 1.1rem;
 }
 
-/* 🔘 BUTTONS */
+/*  BUTTONS */
 .buttons {
   display: flex;
   gap: 12px;
@@ -228,7 +227,7 @@ header {
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-/* 🛠️ SERVICES */
+/* SERVICES */
 .section {
   margin-top: 35px;
 }
@@ -272,7 +271,7 @@ header {
   font-size: 1.2rem;
 }
 
-/* 📸 GALLERY */
+/* GALLERY */
 .gallery {
   display: flex;
   gap: 15px;
@@ -503,12 +502,12 @@ function generateProfile() {
 // التشغيل التلقائي بمجرد الدخول للصفحة
 window.onload = generateProfile;
 
-/* 📞 اتصال */
+/* اتصال */
 function callUser(phone) {
   alert(`جاري الاتصال بـالمعلم على الرقم:\n${phone}`);
 }
 
-/* 💬 واتساب */
+/* واتساب */
 function openWhatsApp(phone) {
   alert(`فتح تطبيق الواتساب للتواصل بخصوص العمل:\n${phone}`);
 }
