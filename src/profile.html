@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الحرفي المغربي - بروفايل ديناميكي</title>
+
+<!-- استدعاء الأيقونات والخطوط -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* 🎨 المتغيرات اللونية (سيتم تغييرها ديناميكياً عبر الجافاسكريبت) */
+:root {
+  --primary: #0F3D3E;
+  --secondary: #E2B007;
+  --bg: #F8F5F0;
+  --card: #FFFFFF;
+  --text: #1E1E1E;
+  --muted: #6B7280;
+  --border: #E5E7EB;
+  --radius: 20px;
+  --spacing: 20px;
+}
+
+/* RESET */
+* {
+  box-sizing: border-box;
+  font-family: "Cairo", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  padding-bottom: 40px;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* 🔵 HEADER */
+header {
+  position: sticky;
+  top: 0;
+  background: var(--card);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px var(--spacing);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  transition: background-color 0.5s ease;
+}
+
+.logo {
+  font-weight: 800;
+  color: var(--primary);
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.5s ease;
+}
+
+.icons i {
+  margin-right: 15px;
+  cursor: pointer;
+  color: var(--primary);
+  transition: 0.3s;
+  font-size: 1.1rem;
+}
+
+.icons i:hover {
+  color: var(--secondary);
+  transform: scale(1.2);
+}
+
+/* 🖼️ COVER (مع تأثير الحركة والطبقات) */
+.cover-container {
+  height: 260px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 1; /* الغلاف في الخلف تماماً */
+  background-color: var(--primary);
+}
+
+.cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: zoomPan 20s infinite alternate ease-in-out;
+  opacity: 0.85;
+}
+
+/* تأثير التكبير والتحريك المستمر للغلاف */
+@keyframes zoomPan {
+  0% { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.15) translate(-2%, 2%); }
+}
+
+/* 📦 CARD */
+.card-wrapper {
+  padding: 0 var(--spacing);
+  max-width: 650px;
+  margin: auto;
+  position: relative;
+  z-index: 10; /* تغليف البطاقة بالكامل ليكون فوق الغلاف */
+}
+
+.card {
+  position: relative;
+  background: var(--card);
+  /* سحب البطاقة للأعلى لتغطي جزء من الغلاف */
+  margin-top: -70px; 
+  padding: 70px var(--spacing) var(--spacing);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: background-color 0.5s ease;
+}
+
+/* 👤 PROFILE IMAGE (تبرز للخارج) */
+.profile-img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 6px solid var(--card);
+  position: absolute;
+  top: -65px; /* تبرز للخارج من البطاقة باتجاه الغلاف */
+  right: 30px;
+  object-fit: cover;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  background-color: white;
+  transition: border-color 0.5s ease;
+}
+
+/* 📝 INFO */
+.name {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--primary);
+  transition: color 0.5s ease;
+}
+
+.job {
+  color: var(--secondary);
+  font-size: 18px;
+  font-weight: 800;
+  margin-top: 4px;
+  transition: color 0.5s ease;
+}
+
+.desc {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+  border-right: 3px solid var(--secondary);
+  padding-right: 10px;
+}
+
+.info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.info-item {
+  color: var(--text);
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+
+.info-item i {
+  color: var(--primary);
+  width: 20px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+/* 🔘 BUTTONS */
+.buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.btn {
+  flex: 1;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.call {
+  background: var(--primary);
+  color: white;
+}
+
+.whatsapp {
+  background: #25D366;
+  color: white;
+}
+
+.refresh {
+  background: var(--bg);
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  flex: 0.3;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.1);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* 🛠️ SERVICES */
+.section {
+  margin-top: 35px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.service {
+  background: var(--bg);
+  padding: 14px 15px;
+  border-radius: 12px;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--border);
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.service:hover {
+  transform: translateX(-5px);
+  border-color: var(--secondary);
+}
+
+.service i {
+  color: var(--secondary);
+  font-size: 1.2rem;
+}
+
+/* 📸 GALLERY */
+.gallery {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding-bottom: 15px;
+  scrollbar-width: none; 
+}
+.gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery img {
+  width: 150px;
+  height: 150px;
+  border-radius: 14px;
+  object-fit: cover;
+  border: 2px solid var(--border);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+  border-color: var(--primary);
+}
+
+/* التحميل */
+.loading {
+  text-align: center;
+  padding: 50px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--primary);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <i class="fa-solid fa-gem"></i> الأصالة المغربية
+  </div>
+  <div class="icons">
+    <i class="fa-solid fa-house" title="الرئيسية"></i>
+    <i class="fa-solid fa-heart" title="المفضلة"></i>
+    <i class="fa-solid fa-bell" title="الإشعارات"></i>
+  </div>
+</header>
+
+<!-- الغلاف المتحرك في الخلفية (Layer 1) -->
+<div class="cover-container">
+  <img id="coverImage" class="cover-img" src="" alt="Cover">
+</div>
+
+<!-- البطاقة التي تصعد فوق الغلاف (Layer 2) -->
+<div class="card-wrapper">
+  <div class="card" id="profileContainer">
+    <div class="loading"><i class="fa-solid fa-spinner fa-spin"></i> جاري استحضار الحرفي...</div>
+  </div>
+</div>
+
+<script>
+// 1. الأسماء الشخصية والعائلية المغربية (أكثر من 20 اسم)
+const moroccanFirstNames = ["يوسف", "أحمد", "حسن", "إبراهيم", "رشيد", "خالد", "عبد القادر", "إدريس", "عمر", "ياسين", "أمين", "طارق", "سعيد", "منير", "نبيل", "عادل", "هشام", "كريم", "عثمان", "المهدي", "رضوان", "مصطفى", "زكرياء"];
+const moroccanLastNames = ["الفاسي", "بن علي", "الشرايبي", "برادة", "العمراني", "التازي", "بناني", "الإدريسي", "الناصري", "العثماني", "العلوي", "المنصوري", "الحسني", "زنيبر", "الصقلي", "الوزاني", "بنجلون", "المراكشي", "الفيلالي", "جسوس", "الودغيري", "بلكورة"];
+const moroccanCities = ["فاس", "مراكش", "مكناس", "الرباط", "الدار البيضاء", "طنجة", "أكادير", "شفشاون", "الصويرة", "تارودانت", "تطوان", "آسفي"];
+
+// 2. الحرف المغربية الأصيلة مع أوصافها وخدماتها
+const moroccanCrafts = [
+    {
+        job: "معلم زلايجي (فسيفساء)",
+        description: "متخصص في تصميم وتركيب الزليج البلدي الفاسي، خبرة متوارثة أباً عن جد في تشكيل الفسيفساء المغربية الأصيلة لتزيين القصور والمنازل.",
+        services: ["تركيب الزليج البلدي", "تصميم نافورات الفسيفساء", "ترميم الزليج العتيق", "تغليف جدران الحمامات بالزليج"]
+    },
+    {
+        job: "معلم كباس (نقاش الجبس)",
+        description: "إبداع منقطع النظير في نقش الجبس المغربي الأصيل لتزيين الأسقف والأقواس، لمسات فنية تحول صالات الضيوف إلى تحف معمارية.",
+        services: ["نقش الجبس البلدي اليدوي", "تركيب الأسقف المعلقة والمزخرفة", "تصميم أقواس الصالون المغربي", "صناعة المقرنصات الجبسية"]
+    },
+    {
+        job: "نقاش خشب الأرز (نجار تقليدي)",
+        description: "حرفي متخصص في نحت ونقش خشب الأرز وتصميم الصالون المغربي الأصيل، صناعة الأبواب والنوافذ المزخرفة بالطابع الأندلسي.",
+        services: ["نحت الأبواب الخشبية التقليدية", "تصميم وتركيب الصالونات المغربية", "صناعة الأسقف الخشبية (المزوقة)", "صناعة المشربيات الخشبية"]
+    },
+    {
+        job: "معلم صفار (نقاش النحاس)",
+        description: "تشكيل ونقش النحاسيات التقليدية يدوياً، من الصواني وأباريق الشاي إلى الثريات الفخمة والفوانيس التي تضيء المجالس.",
+        services: ["نقش الصواني وأباريق الشاي النحاسية", "صناعة الثريات والفوانيس الكبيرة", "تلميع وترميم التحف النحاسية القديمة", "صناعة الموائد النحاسية المنقوشة"]
+    },
+    {
+        job: "خياط تقليدي (معلم)",
+        description: "خبير في تفصيل وخياطة الجلابة والقفطان المغربي والتكشيطة المخزنية، استخدام أرقى أنواع السفيفة والعقاد وطرز المعلم.",
+        services: ["خياطة القفطان والتكشيطة للعرائس", "تفصيل الجلابة الرجالية بالراندة", "طرز المعلم والسفيفة الحرة", "إصلاح وتجديد الملابس التقليدية"]
+    },
+    {
+        job: "معلم تدلاكت (صباغ تقليدي)",
+        description: "خبير في طلاء الجدران بتقنية 'التدلاكت' المراكشية الأصيلة، ألوان طبيعية ملساء وعازلة للماء تضفي دفئاً وسحراً على المكان.",
+        services: ["طلاء جدران التدلاكت الطبيعي", "تجهيز جدران الحمامات البلدية", "تزيين الواجهات والممرات بالمواد الطبيعية", "تلميع التدلاكت بالصابون البلدي"]
+    },
+    {
+        job: "صانع فخار وخزف (فخار آسفي/فاس)",
+        description: "تشكيل الطين ببراعة لصناعة الفخار الملون والخزف المزخرف، من طواجن الطبخ إلى الأواني الزخرفية والجرات العملاقة للحدائق.",
+        services: ["صناعة الطواجن وأواني التقديم", "زخرفة الصحون الخزفية بألوان نباتية", "تصميم الجرات الكبيرة للحدائق", "صناعة المزهريات الخزفية الفاخرة"]
+    },
+    {
+        job: "معلم سراج (مصنوعات جلدية)",
+        description: "دباغة وصناعة الجلود لإنتاج البلغة الفاسية والِشربيل المراكشي، وتصميم الحقائب والسروج المزخرفة للخيول بخيوط الذهب والفضة.",
+        services: ["صناعة البلغة والشربيل اليدوي", "تصميم وتطريز الحقائب الجلدية", "تطريز وصناعة سروج الخيل المذهبة", "تغليف الصناديق والمقاعد بالجلد المنقوش"]
+    }
+];
+
+// 3. لوحات ألوان مغربية (تتغير ديناميكياً)
+const colorPalettes = [
+    { primary: "#0F3D3E", secondary: "#E2B007", bg: "#F8F5F0", name: "أخضر داكن وذهبي" },
+    { primary: "#5B2E48", secondary: "#C59B76", bg: "#FDFBF7", name: "عنابي فاس ورملي" },
+    { primary: "#1A365D", secondary: "#ED8936", bg: "#F7FAFC", name: "أزرق طنجة وبرتقالي" },
+    { primary: "#744210", secondary: "#D69E2E", bg: "#FFFAF0", name: "بني الطين وأصفر النحاس" },
+    { primary: "#276749", secondary: "#F6E05E", bg: "#F0FFF4", name: "أخضر الأطلس وأصفر" },
+    { primary: "#822727", secondary: "#F6AD55", bg: "#FFF5F5", name: "أحمر مراكش وبرتقالي" }
+];
+
+// دالة لجلب عنصر عشوائي من مصفوفة
+function getRandomItem(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
+// دالة لجلب مجموعة خدمات عشوائية للحرفة
+function getRandomServices(servicesArray, num) {
+    const shuffled = [...servicesArray].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, num);
+}
+
+// الدالة الرئيسية لتوليد البروفايل
+function generateProfile() {
+    const container = document.getElementById("profileContainer");
+    
+    // إظهار التحميل
+    container.innerHTML = '<div class="loading"><i class="fa-solid fa-spinner fa-spin"></i> جاري استحضار الحرفي...</div>';
+    
+    setTimeout(() => {
+        // 1. تغيير الألوان ديناميكياً
+        const palette = getRandomItem(colorPalettes);
+        document.documentElement.style.setProperty('--primary', palette.primary);
+        document.documentElement.style.setProperty('--secondary', palette.secondary);
+        document.documentElement.style.setProperty('--bg', palette.bg);
+
+        // 2. توليد البيانات
+        const randomId = Math.floor(Math.random() * 2000);
+        const craft = getRandomItem(moroccanCrafts);
+        
+        const profile = {
+            name: `${getRandomItem(moroccanFirstNames)} ${getRandomItem(moroccanLastNames)}`,
+            job: craft.job,
+            description: craft.description,
+            city: getRandomItem(moroccanCities),
+            phone: `+212 6${Math.floor(10000000 + Math.random() * 90000000)}`,
+            experience: `${Math.floor(Math.random() * 30) + 10} سنة خبرة`,
+            rating: (Math.random() * (5 - 4) + 4).toFixed(1),
+            services: getRandomServices(craft.services, 3),
+            cover: `https://picsum.photos/seed/${randomId}/800/400`,
+            image: `https://i.pravatar.cc/150?img=${Math.floor(Math.random() * 70)}`,
+            images: [
+                `https://picsum.photos/seed/${randomId+1}/200/200`,
+                `https://picsum.photos/seed/${randomId+2}/200/200`,
+                `https://picsum.photos/seed/${randomId+3}/200/200`,
+                `https://picsum.photos/seed/${randomId+4}/200/200`
+            ]
+        };
+
+        // تحديث الغلاف
+        document.getElementById("coverImage").src = profile.cover;
+
+        // 3. حقن البيانات في الواجهة مع المحافظة على الترتيب والطبقات
+        container.innerHTML = `
+            <!-- الصورة الشخصية (تبرز فوق البطاقة والغلاف) -->
+            <img src="${profile.image}" class="profile-img" alt="صورة الحرفي">
+
+            <div class="name">${profile.name}</div>
+            <div class="job">${profile.job}</div>
+            <div class="desc">${profile.description}</div>
+
+            <div class="info-grid">
+                <div class="info-item"><i class="fa-solid fa-location-dot"></i> <span>المدينة: ${profile.city}</span></div>
+                <div class="info-item"><i class="fa-solid fa-phone"></i> <span dir="ltr">${profile.phone}</span></div>
+                <div class="info-item"><i class="fa-solid fa-star" style="color:var(--secondary)"></i> <span>التقييم: ${profile.rating}/5.0 (${profile.experience})</span></div>
+            </div>
+
+            <div class="buttons">
+                <button class="btn call" onclick="callUser('${profile.phone}')">
+                    <i class="fa-solid fa-phone-volume"></i> اتصال
+                </button>
+                <button class="btn whatsapp" onclick="openWhatsApp('${profile.phone}')">
+                    <i class="fa-brands fa-whatsapp"></i> واتساب
+                </button>
+                <button class="btn refresh" onclick="generateProfile()" title="توليد حرفي جديد">
+                    <i class="fa-solid fa-shuffle"></i>
+                </button>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title"><i class="fa-solid fa-screwdriver-wrench"></i> الخدمات المقدمة</h3>
+                <div class="services-list">
+                    ${profile.services.map(s => `
+                        <div class="service"><i class="fa-solid fa-check-circle"></i> ${s}</div>
+                    `).join("")}
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title"><i class="fa-solid fa-images"></i> معرض الأعمال</h3>
+                <div class="gallery">
+                    ${profile.images.map(img => `
+                        <img src="${img}" alt="عمل حرفي">
+                    `).join("")}
+                </div>
+            </div>
+        `;
+    }, 400); // تأخير بسيط لمحاكاة التحميل والسماح بتغيير الألوان بسلاسة
+}
+
+// التشغيل التلقائي بمجرد الدخول للصفحة
+window.onload = generateProfile;
+
+/* 📞 اتصال */
+function callUser(phone) {
+  alert(`جاري الاتصال بـالمعلم على الرقم:\n${phone}`);
+}
+
+/* 💬 واتساب */
+function openWhatsApp(phone) {
+  alert(`فتح تطبيق الواتساب للتواصل بخصوص العمل:\n${phone}`);
+}
+</script>
+
+</body>
+</html>
